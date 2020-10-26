@@ -1,0 +1,35 @@
+<ng-template #modal>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">{{mode=='edit'? "Edit Note" : "Add Note"}}</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #addUpdateFrm="ngForm" (ngSubmit)="saveOrUpdate(addUpdateFrm.valid)">
+
+      <div class="form-group" [ngClass]="{'has-danger':author.invalid && isFormSubmited}">
+        <label>Author</label>
+        <input type="text" #author="ngModel" [(ngModel)]="NoteModel.author" name="author" class="form-control"
+               required>
+        <div *ngIf="author.invalid && isFormSubmited" class="invalid-feedback">
+          Author name is Required.
+        </div>
+      </div>
+
+      <div class="form-group" [ngClass]="{'has-danger':author.invalid && isFormSubmited}">
+        <label>Content</label>
+        <textarea style="resize: none" name="content" #content="ngModel" [(ngModel)]="NoteModel.content" class="form-control" required></textarea>
+        <div *ngIf="content.invalid && isFormSubmited" class="invalid-feedback">
+          Content is Required.
+        </div>
+      </div>
+
+
+      <input type="submit" class="btn btn-primary" [ngClass]="mode=='edit'?'btn-warning':'btn-primary'"
+             value="{{btnText}}"/>
+
+    </form>
+  </div>
+
+</ng-template>

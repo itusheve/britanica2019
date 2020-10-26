@@ -1,0 +1,17 @@
+
+<div class = "container">
+<h2>Notes</h2>
+<a class="btn float" (click)="addUpdateModal.openModal()">
+        <i class="fa fa-plus my-float"></i>
+</a>
+<app-notifications #notification [alertClass]="alertClass" [alertMessage]="alertMessage"
+                   [alertType]="alertType"></app-notifications>
+
+<div class="row">
+    <div *ngFor="let n of Notes" class="col-lg-3 col-md-4 col-sm-6">
+    <note (edit)="onEdit($event)" (delete)="onDelete($event)" [Note]="n" [onPopup]="false"></note>
+    </div>
+</div>
+<app-add-update-note #addUpdateModal></app-add-update-note>
+<app-confirmation-modal #confirmModal></app-confirmation-modal>
+</div>

@@ -1,0 +1,20 @@
+<div class="card">
+        <div class = "card-header">
+            <div class ="group-icons btn-group" role="group" *ngIf="!onPopup">
+                <i class="btn fa fa-pencil" (click) ="editNote()"></i> 
+                <i class="btn fa fa-trash-o fa-lg" (click)="deleteNote()"></i>
+            </div>
+        </div>
+        <div class = "card-body">
+        <p class ="card-subtitle date ">
+                {{Note?.date | date}}
+        </p>
+       <div class ="card-text" [ngClass] = "{pointerClass:!onPopup}" (click)="!onPopup && showContent()">
+            <textarea id ="content" [ngClass]="{regularSize:!onPopup , largeSize:onPopup, scrollClass:onPopup,hiddenClass:!onPopup}" readonly class ="content">{{Note?.content}}</textarea>
+            <p class="tagline card-text text-xs-center author">{{"By " + Note?.author}}</p>
+            
+    
+    </div>
+</div>
+
+<app-note-popup #notePopupModal></app-note-popup>
